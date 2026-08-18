@@ -1,20 +1,24 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import WorkoutListScreen from './screens/WorkoutListScreen';
+import WorkoutDetailsScreen from './screens/WorkoutDetailsScreen';
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator
+        initialRouteName="WorkoutList"
+        screenOptions={{
+          headerShown: false, // We use custom headers in each screen for custom styles
+        }}
+      >
+        <Stack.Screen name="WorkoutList" component={WorkoutListScreen} />
+        <Stack.Screen name="WorkoutDetails" component={WorkoutDetailsScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
